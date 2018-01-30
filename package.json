@@ -1,6 +1,6 @@
 {
   "name": "naf-framework-mongoose",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "naf egg framework use mongoose",
   "egg": {
     "framework": "naf-framework"
@@ -51,7 +51,7 @@
     "config",
     "lib",
     "index.js",
-    "service.js"
+    "app.js"
   ],
   "license": "MIT",
   "publishConfig": {
