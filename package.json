@@ -1,0 +1,60 @@
+{
+  "name": "naf-framework-mongoose",
+  "version": "0.0.18",
+  "description": "naf egg framework use mongoose",
+  "egg": {
+    "framework": "naf-framework"
+  },
+  "dependencies": {
+    "egg": "^2.3.0",
+    "egg-mongoose": "^2.1.1",
+    "naf-core": "^0.0.10",
+    "naf-framework": "^0.0.10"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.3.7",
+    "egg-ci": "^1.8.0",
+    "egg-mock": "^3.14.0",
+    "eslint": "^4.16.0",
+    "eslint-config-egg": "^6.0.0",
+    "eslint-config-naf": "^0.0.2",
+    "webstorm-disable-index": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "test": "npm run lint -- --fix && egg-bin pkgfiles && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && egg-bin pkgfiles --check && npm run cov",
+    "autod": "autod",
+    "pkgfiles": "egg-bin pkgfiles"
+  },
+  "ci": {
+    "version": "8, 9"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "egg",
+    "egg-framework"
+  ],
+  "author": "dyg",
+  "files": [
+    "app",
+    "config",
+    "lib",
+    "index.js",
+    "service.js"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
