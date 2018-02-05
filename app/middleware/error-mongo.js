@@ -6,7 +6,7 @@ const { BusinessError, ErrorCode } = require('naf-core').Error;
 
 // mongodb错误处理
 const handleMongoError = (ctx, err, options) => {
-  let errcode = ErrorCode.DATABASE;
+  let errcode = ErrorCode.DATABASE_FAULT;
   if (err.code === 11000) {
     errcode = ErrorCode.DATA_EXISTED;
   } /* else if (err instanceof ValidationError && ctx.acceptJSON) {
