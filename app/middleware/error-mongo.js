@@ -1,6 +1,7 @@
 'use strict';
 
 const { MongoError } = require('mongodb-core');
+const { ValidationError } = require('mongoose').Error;
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 
 // mongodb错误处理
@@ -8,7 +9,11 @@ const handleMongoError = (ctx, err, options) => {
   let errcode = ErrorCode.DATABASE;
   if (err.code === 11000) {
     errcode = ErrorCode.DATA_EXISTED;
+  } else if (err instanceof ValidationError && ctx.acceptJSON) {
+    // 数据库错误
+    errcode = ErrorCode.BADPARAM;
   }
+
 
   if (options.details) {
     // expose details
@@ -27,6 +32,9 @@ module.exports = (options = {}) => {
       await next();
     } catch (err) {
       if (err instanceof MongoError && ctx.acceptJSON) {
+        // 数据库错误
+        handleMongoError(ctx, err, options);
+      } else if (err instanceof ValidationError && ctx.acceptJSON) {
         // 数据库错误
         handleMongoError(ctx, err, options);
       } else {
