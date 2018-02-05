@@ -9,10 +9,10 @@ const handleMongoError = (ctx, err, options) => {
   let errcode = ErrorCode.DATABASE;
   if (err.code === 11000) {
     errcode = ErrorCode.DATA_EXISTED;
-  } else if (err instanceof ValidationError && ctx.acceptJSON) {
+  } /* else if (err instanceof ValidationError && ctx.acceptJSON) {
     // 数据库错误
     errcode = ErrorCode.BADPARAM;
-  }
+  }*/
 
 
   if (options.details) {
