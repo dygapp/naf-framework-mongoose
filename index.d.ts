@@ -45,7 +45,7 @@ declare class NafModel { // tslint:disable-line
  * NafService is a base service class that can be extended,
  * it's extending from {@link Service},
  */
-export class NafService { // tslint:disable-line
+export class NafService { 
   /**
    * 构造函数
    * @param ctx context对象 
