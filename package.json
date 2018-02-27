@@ -1,6 +1,6 @@
 {
   "name": "naf-framework-mongoose",
-  "version": "0.0.30",
+  "version": "0.0.32",
   "description": "naf egg framework use mongoose",
   "egg": {
     "framework": "naf-framework"
@@ -14,11 +14,11 @@
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
-    "egg-bin": "^4.3.7",
+    "egg-bin": "^4.4.0",
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.14.0",
-    "eslint": "^4.17.0",
-    "eslint-config-egg": "^6.0.0",
+    "eslint": "^4.18.1",
+    "eslint-config-egg": "^7.0.0",
     "eslint-config-naf": "^0.0.2",
     "webstorm-disable-index": "^1.2.0"
   },
