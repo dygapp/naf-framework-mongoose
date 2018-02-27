@@ -4,7 +4,7 @@ declare namespace Services {
   /**
  * NafService is a wrapper class for mongoose model
  */
-  declare class NafModel { // tslint:disable-line
+  declare class NafModel {
     /**
      * 构造函数
      * @param ctx context对象 
