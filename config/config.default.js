@@ -12,5 +12,12 @@ module.exports = appInfo => {
     key: appInfo.name + '_123456',
   };
 
+  config.errorMongo = {
+    details: true,
+  };
+  config.errorHanler = {
+    details: true,
+  };
+
   return config;
 };
