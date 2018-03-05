@@ -31,7 +31,7 @@ module.exports = (options = {}) => {
     try {
       await next();
     } catch (err) {
-      if (err instanceof MongoError && ctx.acceptJSON) {
+      if (err.name === 'MongoError' && ctx.acceptJSON) {
         // 数据库错误
         handleMongoError(ctx, err, options);
       } else if (err instanceof ValidationError && ctx.acceptJSON) {
