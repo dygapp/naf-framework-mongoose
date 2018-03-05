@@ -1,8 +1,25 @@
-import { Context } from "egg";
+import * as EggApplication from 'egg';
+
+/**
+ * NafContext is not a real class,
+ * it's extending from {@link EggApplication.Context},
+ */
+export interface NafContext extends EggApplication.Context {
+  /**
+   * compose from ctx.query and ctx.request.body
+   */
+  requestparam: any;
+
+  // 返回JSON结果
+  json(errcode = 0, errmsg = 'ok', data = {});
+  success(message = 'ok', data = {});
+  fail(errcode, errmsg, details);
+  ok(message, data);
+}
 
 declare namespace Services {
   /**
- * NafService is a wrapper class for mongoose model
+ * NafModel is a wrapper class for mongoose model
  */
   declare class NafModel {
     /**
@@ -52,7 +69,7 @@ declare namespace Services {
      * @param ctx context对象 
      * @param name service名称
      */
-    constructor(ctx: Context, name: String);
+    // constructor(ctx: Context, name: String);
 
     /**
      * 租户ID，用于多租户系统
@@ -62,7 +79,7 @@ declare namespace Services {
     /** 
      * 生成Id，sequence名用service的name
      */
-    nextId(): any;
+    // nextId(): any;
 
     _model(model: any): NafModel;
 
@@ -92,5 +109,24 @@ declare namespace Services {
    * CrudService is extending from {@link NafService} ,
    */
   export class CrudService extends NafService { }
+
 }
+
+declare namespace Controllers {
+
+  /**
+   * NafController is a base service class that can be extended,
+   * it's extending from {@link EggApplication.Controller},
+   */
+  export class NafController extends EggApplication.Controller {
+
+    /**
+     * 租户ID，用于多租户系统
+     */
+    tenant: string;
+
+    ctx: NafContext;
+  }
+}
+
 export as namespace Naf;

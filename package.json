@@ -1,15 +1,11 @@
 {
   "name": "naf-framework-mongoose",
-  "version": "0.0.46",
+  "version": "0.1.0",
   "description": "naf egg framework use mongoose",
-  "egg": {
-    "framework": "naf-framework"
-  },
   "dependencies": {
     "egg": "^2.4.0",
-    "egg-mongoose": "^2.1.1",
-    "naf-core": "^0.0.16",
-    "naf-framework": "^0.0.17"
+    "egg-mongoose": "^2.2.0",
+    "naf-core": "^0.0.19"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -17,13 +13,13 @@
     "egg-bin": "^4.4.0",
     "egg-ci": "^1.8.0",
     "egg-mock": "^3.14.1",
-    "eslint": "^4.18.1",
+    "eslint": "^4.18.2",
     "eslint-config-egg": "^7.0.0",
     "eslint-config-naf": "^0.0.2",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=8.9.0"
   },
   "scripts": {
     "test": "npm run lint -- --fix && egg-bin pkgfiles && npm run test-local",
