@@ -1,5 +1,32 @@
 import * as EggApplication from 'egg';
 
+declare module 'egg' {
+  /**
+   * extend egg Context interface
+   */
+  export interface Context {
+
+    /**
+     * compose from ctx.query and ctx.request.body
+     */
+    requestparam: any;
+
+    /**
+     * 租户ID，用于多租户系统
+     */
+    tenant: string;
+
+    // 返回JSON结果
+    json(errcode: number, errmsg: string, data: object);
+    success(message: string, data: object);
+    fail(errcode: number, errmsg: string, details: any);
+    /**
+     * same to success(message: string, data: object);
+     */
+    ok(message: string, data: object);
+  }
+  
+}
 /**
  * NafContext is not a real class,
  * it's extending from {@link EggApplication.Context},
@@ -11,23 +38,26 @@ export interface NafContext extends EggApplication.Context {
   requestparam: any;
 
   // 返回JSON结果
-  json(errcode = 0, errmsg = 'ok', data = {});
-  success(message = 'ok', data = {});
-  fail(errcode, errmsg, details);
-  ok(message, data);
+  json(errcode: number, errmsg: string, data: object);
+  success(message: string, data: object);
+  fail(errcode: number, errmsg: string, details: any);
+  /**
+   * same to success(message: string, data: object);
+   */
+  ok(message: string, data: object);
 }
 
 declare namespace Services {
   /**
  * NafModel is a wrapper class for mongoose model
  */
-  declare class NafModel {
+  export class NafModel {
     /**
      * 构造函数
      * @param ctx context对象 
      * @param model mongoose model对象
      */
-    constructor(ctx: Context, model: any);
+    constructor(ctx: EggApplication.Context, model: any);
 
     /**
      * 原始的Mongoose model对象
@@ -110,23 +140,6 @@ declare namespace Services {
    */
   export class CrudService extends NafService { }
 
-}
-
-declare namespace Controllers {
-
-  /**
-   * NafController is a base service class that can be extended,
-   * it's extending from {@link EggApplication.Controller},
-   */
-  export class NafController extends EggApplication.Controller {
-
-    /**
-     * 租户ID，用于多租户系统
-     */
-    tenant: string;
-
-    ctx: NafContext;
-  }
 }
 
 export as namespace Naf;
