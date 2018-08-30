@@ -1,6 +1,6 @@
 'use strict';
 
-const { MongoError } = require('mongodb-core');
+// const { MongoError } = require('mongodb-core');
 const { ValidationError } = require('mongoose').Error;
 const { BusinessError, ErrorCode } = require('naf-core').Error;
 
