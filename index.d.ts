@@ -101,6 +101,11 @@ declare namespace Services {
      */
     tenant: string;
 
+    /**
+     * 服务默认Model对象
+     */
+    model: mongoose.Model<any>;
+
     /** 
      * 生成Id，sequence名用service的name
      */
