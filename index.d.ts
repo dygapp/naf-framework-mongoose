@@ -83,46 +83,6 @@ export interface NafContext extends EggApplication.Context {
 }
 
 declare namespace Services {
-  /**
- * NafModel is a wrapper class for mongoose model
- */
-  export class NafModel {
-    /**
-     * 构造函数
-     * @param ctx context对象 
-     * @param model mongoose model对象
-     */
-    constructor(ctx: EggApplication.Context, model: any);
-
-    /**
-     * 原始的Mongoose model对象
-     */
-    model: any;
-
-    /**
-     * 插入数据
-     * @param data 数据对象
-     * @param model mongoose model对象 
-     */
-    _create(data: any);
-
-    _findById(_id: any);
-
-    _find(conditions: Object, projection: Object, options: Object);
-
-    _findOne(conditions: Object, projection: Object, options: Object);
-
-    _remove(conditions: Object);
-
-    _findOneAndUpdate(conditions: Object, update: Object, options: Object);
-
-    _findByIdAndUpdate(_id: any, update: Object, options: Object);
-
-    _update(conditions: Object, update: Object, options: Object);
-
-    _count(conditions: Object);
-
-  }
 
   /**
    * NafService is a base service class that can be extended,
@@ -144,9 +104,7 @@ declare namespace Services {
     /** 
      * 生成Id，sequence名用service的name
      */
-    // nextId(): any;
-
-    _model(model: any): NafModel;
+    nextId(): Number;
 
     /**
      * 插入数据
