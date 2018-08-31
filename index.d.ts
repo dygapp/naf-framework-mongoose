@@ -1,10 +1,32 @@
 import * as EggApplication from 'egg';
+import * as mongoose from 'mongoose';
 
 declare module 'egg' {
-  /**
-   * extend egg Context interface
-   */
-  export interface Context {
+
+  type MongooseModels = {
+    [key: string]: mongoose.Model<any>
+  };
+
+  type MongooseSingleton = {
+    clients: Map<string, mongoose.Connection>,
+    get (id: string) : mongoose.Connection
+  };
+
+  type MongooseConfig = {
+    url: string,
+    options?: mongoose.ConnectionOptions
+  };
+
+  // extend app
+  interface Application {
+    mongooseDB: mongoose.Connection | MongooseSingleton;
+    mongoose: typeof mongoose;
+    model: MongooseModels;
+  }
+
+  // extend context
+  interface Context {
+    model: MongooseModels;
 
     /**
      * compose from ctx.query and ctx.request.body
@@ -25,8 +47,21 @@ declare module 'egg' {
      */
     ok(message: string, data: object);
   }
-  
+
+  // extend your config
+  interface EggAppConfig {
+    mongoose: {
+      url?: string,
+      options?: mongoose.ConnectionOptions,
+      client?: MongooseConfig,
+      clients?: {
+        [key: string]: MongooseConfig
+      }
+    };
+  }
+
 }
+
 /**
  * NafContext is not a real class,
  * it's extending from {@link EggApplication.Context},

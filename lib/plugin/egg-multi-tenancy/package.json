@@ -1,5 +1,6 @@
 {
   "eggPlugin": {
-    "name": "multiTenancy"
+    "name": "multiTenancy",
+    "dependencies": [ "mongoose" ]
   }
 }
