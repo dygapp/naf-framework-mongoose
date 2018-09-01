@@ -19,6 +19,11 @@ import * as mongoose from 'mongoose';
     tenant: string;
 
     /**
+     * 服务名，用于默认序列名，可选
+     */
+    name: string;
+
+    /**
      * 服务默认Model对象
      */
     model: mongoose.Model<any>;
@@ -26,26 +31,6 @@ import * as mongoose from 'mongoose';
     /** 
      * 生成Id，sequence名用service的name
      */
-    nextId(): Number;
+    nextId(seqName: string = null): Number;
 
-    /**
-     * 插入数据
-     * @param data 数据对象
-     * @param model mongoose model对象 
-     */
-    _create(data: Object, model: any);
-
-    _findById(_id: string, model: any);
-
-    _find(conditions: Object, projection: Object, options: Object, model: any);
-
-    _findOne(conditions: Object, projection: Object, options: Object, model: any);
-
-    _remove(conditions: Object, model: any);
-
-    _findOneAndUpdate(conditions: Object, update: Object, options: Object, model: any);
-
-    _update(conditions: Object, update: Object, options: Object, model: any);
-
-    _count(conditions: Object, model: any);
   }
