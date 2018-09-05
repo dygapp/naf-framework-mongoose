@@ -1,10 +1,11 @@
 {
   "name": "naf-framework-mongoose",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "description": "naf egg framework use mongoose",
   "dependencies": {
     "egg": "^2.10.0",
     "egg-mongoose": "^3.1.0",
+    "egg-scripts": "^2.9.1",
     "egg-validate": "^2.0.1",
     "is-type-of": "^1.2.0",
     "lodash": "^4.17.10",
