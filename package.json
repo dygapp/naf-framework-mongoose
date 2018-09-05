@@ -9,7 +9,7 @@
     "egg-validate": "^2.0.1",
     "is-type-of": "^1.2.0",
     "lodash": "^4.17.10",
-    "naf-core": "^0.0.22"
+    "naf-core": "^0.0.23"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.116",
