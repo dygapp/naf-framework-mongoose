@@ -22,6 +22,7 @@ declare module 'egg' {
     mongooseDB: mongoose.Connection | MongooseSingleton;
     mongoose: typeof mongoose;
     model: MongooseModels;
+    tenantModel(tenant: string): MongooseModels;
   }
 
   // extend context
