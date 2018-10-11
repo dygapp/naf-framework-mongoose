@@ -38,6 +38,18 @@ declare module 'egg' {
      * 租户ID，用于多租户系统
      */
     tenant: string;
+    /**
+     * 当前用户ID
+     */
+    userid: string;
+    /**
+     * 当前用户角色
+     */
+    role: string;
+    /**
+     * 当前用户标签
+     */
+    tags: string;
 
     // 返回JSON结果
     json(errcode: number, errmsg: string, data: object);
