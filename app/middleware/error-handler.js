@@ -9,23 +9,31 @@ module.exports = options => {
     try {
       await next();
     } catch (err) {
-      if (err instanceof BusinessError && ctx.acceptJSON) {
+      if (err instanceof BusinessError) {
         // 业务错误
+        let res = { errcode: err.errcode, errmsg: err.errmsg };
         if (options.details) {
-          ctx.body = { errcode: err.errcode, errmsg: err.errmsg, details: err.details };
+          res = { errcode: err.errcode, errmsg: err.errmsg, details: err.details };
+        }
+        if (ctx.acceptJSON) {
+          ctx.body = res;
         } else {
-          ctx.body = { errcode: err.errcode, errmsg: err.errmsg };
+          ctx.render('error.njk', res);
         }
         ctx.status = 200;
         ctx.logger.warn(`BusinessError: ${err.errcode}, ${err.errmsg}`);
         ctx.logger.debug(err);
-      } else if (err instanceof AssertionError && ctx.acceptJSON) {
+      } else if (err instanceof AssertionError) {
         // Assert错误
         const errcode = ErrorCode.BADPARAM;
+        let res = { errcode, errmsg: BusinessError.getErrorMsg(errcode) };
         if (options.details) {
-          ctx.body = { errcode, errmsg: BusinessError.getErrorMsg(errcode), details: err.message };
+          res = { errcode, errmsg: BusinessError.getErrorMsg(errcode), details: err.message };
+        }
+        if (ctx.acceptJSON) {
+          ctx.body = res;
         } else {
-          ctx.body = { errcode, errmsg: BusinessError.getErrorMsg(errcode) };
+          ctx.render('error.njk', res);
         }
         ctx.status = 200;
         ctx.logger.warn(`AssertionError: ${err.message}`);

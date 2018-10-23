@@ -15,11 +15,15 @@ const handleMongoError = (ctx, err, options) => {
   }*/
 
 
+  let res = { errcode, errmsg: BusinessError.getErrorMsg(errcode) };
   if (options.details) {
     // expose details
-    ctx.body = { errcode, errmsg: BusinessError.getErrorMsg(errcode), details: err.message };
+    res = { errcode, errmsg: BusinessError.getErrorMsg(errcode), details: err.message };
+  }
+  if (ctx.acceptJSON) {
+    ctx.body = res;
   } else {
-    ctx.body = { errcode, errmsg: BusinessError.getErrorMsg(errcode) };
+    ctx.render('error.njk', res);
   }
   ctx.status = 200;
   ctx.logger.warn(`MongoError: ${err.code}, ${err.message}`);
