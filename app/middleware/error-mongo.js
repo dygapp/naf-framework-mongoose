@@ -20,11 +20,7 @@ const handleMongoError = (ctx, err, options) => {
     // expose details
     res = { errcode, errmsg: BusinessError.getErrorMsg(errcode), details: err.message };
   }
-  if (ctx.acceptJSON) {
-    ctx.body = res;
-  } else {
-    ctx.render('error.njk', res);
-  }
+  ctx.body = res;
   ctx.status = 200;
   ctx.logger.warn(`MongoError: ${err.code}, ${err.message}`);
   ctx.logger.debug(err);

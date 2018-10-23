@@ -31,12 +31,5 @@ module.exports = appInfo => {
     details: true,
   };
 
-  config.view = {
-    defaultViewEngine: 'nunjucks',
-    mapping: {
-      '.njk': 'nunjucks',
-    },
-  };
-
   return config;
 };
