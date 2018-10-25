@@ -82,3 +82,9 @@ export { NafService } from './naf-service';
  * CrudService is extending from {@link NafService} ,
  */
 export class CrudService extends NafService { }
+
+export class AxiosService extends EggApplication.Service { 
+  constructor(ctx: EggApplication.Context, meta: object, options: object = {});
+
+  async request(uri: string, query: object, data: object = undefined, options: object = {});
+}
