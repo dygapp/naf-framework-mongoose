@@ -17,8 +17,8 @@ module.exports = options => {
         }
         ctx.body = res;
         ctx.status = 200;
-        ctx.logger.warn(`BusinessError: ${err.errcode}, ${err.errmsg}`);
-        ctx.logger.debug(err);
+        ctx.app.logger.warn(`[error-handler] BusinessError: ${err.errcode}, ${err.errmsg}`);
+        ctx.app.logger.debug(err);
       } else if (err instanceof AssertionError /* && ctx.acceptJSON */) {
         // Assert错误
         const errcode = ErrorCode.BADPARAM;
@@ -28,8 +28,8 @@ module.exports = options => {
         }
         ctx.body = res;
         ctx.status = 200;
-        ctx.logger.warn(`AssertionError: ${err.message}`);
-        ctx.logger.debug(err);
+        ctx.app.logger.warn(`[error-handler] AssertionError: ${err.message}`);
+        ctx.app.logger.debug(err);
       } else {
         throw err;
       }

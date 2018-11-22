@@ -30,6 +30,10 @@ module.exports = appInfo => {
   config.errorHandler = {
     details: true,
   };
+  config.accessLog = {
+    enable: true,
+    body: false,
+  };
 
   return config;
 };

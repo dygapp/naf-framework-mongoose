@@ -22,8 +22,8 @@ const handleMongoError = (ctx, err, options) => {
   }
   ctx.body = res;
   ctx.status = 200;
-  ctx.logger.warn(`MongoError: ${err.code}, ${err.message}`);
-  ctx.logger.debug(err);
+  ctx.app.logger.warn(`[error-mongo] MongoError: ${err.code}, ${err.message}`);
+  ctx.app.logger.debug(err);
 };
 
 module.exports = (options = {}) => {
