@@ -87,6 +87,6 @@ export class AxiosService extends EggApplication.Service {
   constructor(ctx: EggApplication.Context, meta: object, options: object = {});
 
   async httpGet(uri: string, query: object, options);
-  async httpPost(uri: string, data: object = {}, query: object, options);
-  async request(uri: string, data: object, query: object, options);
+  async httpPost(uri: string, query: object = {}, data: object, options);
+  async request(uri: string, query: object, data: object, options);
 }
