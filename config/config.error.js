@@ -15,7 +15,13 @@ module.exports = {
       ctx.status = 500;
     } else if (err instanceof Error) {
       // 其他错误
-      ctx.body = { errcode: 500, errmsg: '系统错误', details: err.message };
+      const res = { errcode: err.status || 500, errmsg: '系统错误', details: err.message };
+      if (res.status === 422) {
+        // for egg-validate
+        res.errmsg = '数据校验错误';
+        res.details = err.errors;
+      }
+      ctx.body = res;
       ctx.status = 500;
     } else {
       // 未知错误
