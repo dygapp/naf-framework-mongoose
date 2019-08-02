@@ -16,7 +16,7 @@ module.exports = {
     } else if (err instanceof Error) {
       // 其他错误
       const res = { errcode: err.status || 500, errmsg: '系统错误', details: err.message };
-      if (res.status === 422) {
+      if (err.status === 422) {
         // for egg-validate
         res.errmsg = '数据校验错误';
         res.details = err.errors;

@@ -1,6 +1,6 @@
 {
   "name": "naf-framework-mongoose",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "naf egg framework use mongoose",
   "dependencies": {
     "axios": "^0.19.0",
